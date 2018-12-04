@@ -1,0 +1,19 @@
+{% if person_list %}
+    <ul>
+    {% for person in person_list %}
+        <li><a href="{% url 'hw1:detail' person.id %}">{{ person.person_id }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No information.</p>
+{% endif %}
+
+<form action="{% url 'hw1:registration' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <label for="name">Your name: </label>
+    <input id="name" type="text" name="your_name" value="">
+    <input type="submit" value="OK">
+</form>
+
+

@@ -1,0 +1,25 @@
+<h1>{{ person.person_id }}</h1>
+<ul>
+{% for action in person.action_set.all %}
+    <li>{{ action.action }} {{ action.amount }}</li>
+{% endfor %}
+</ul>
+
+<p> {{ person.person_id }} balance: {{ balance }} </p>
+
+
+<h1>New operation for {{ person.person_id }}</h1>
+
+<form action="{% url 'hw1:action' person.id %}" method="post">
+    {% csrf_token %}
+    <label for="action"> Action: </label>
+    <select id="action" name = "action" >
+                    <option value="Lend">Lend</option>
+                    <option value="Borrow">Borrow</option>
+    </select>
+    <label for="amount"> Amount: </label>
+    <input id="amount" type="number" name="amount" value="">
+    <input type="submit" value="OK">
+</form>
+
+
